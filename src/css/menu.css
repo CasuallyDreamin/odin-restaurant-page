@@ -1,0 +1,169 @@
+.menu {
+  padding: 2rem;
+  height: 90vh;
+  overflow-y: auto; /* Scroll if content exceeds viewport */
+}
+
+.selector-bar {
+  display: flex;
+  flex-wrap: wrap; /* wrap on smaller screens */
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.selector-bar button {
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  background-color: #eee;
+  border: none;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  flex: 1 1 auto; /* flexible buttons on small screens */
+  min-width: 80px;
+  text-align: center;
+}
+
+.selector-bar button.active {
+  background-color: var(--clr-accent);
+  color: #fff;
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  transition: opacity 0.2s ease;
+}
+
+.menu-content.fade-out {
+  opacity: 0;
+}
+
+.menu-content.fade-in {
+  opacity: 1;
+}
+
+.course-section h3 {
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--clr-accent);
+  padding-bottom: 0.3rem;
+}
+
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
+.dish-card {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 260px; /* fixed height for uniform grid */
+  position: relative;
+}
+
+.dish-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.dish-card h4 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.dish-card .dish-desc {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0 0.5rem 0.5rem 0.5rem;
+  overflow: hidden;
+  max-height: 2.5em; /* shows ~2 lines by default */
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0.9;
+}
+
+
+.dish-card .dish-price {
+  font-weight: bold;
+  color: var(--clr-accent);
+  margin: 0.5rem 0;
+}
+
+.dish-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.dish-card:hover .dish-desc {
+  max-height: 6em; /* expand to show full description */
+  opacity: 1;
+}
+
+.dish-card::after {
+  content: "";
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  width: 100%;
+  height: 1.2em;
+  background: linear-gradient(transparent, #fff);
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.dish-card:hover::after {
+  opacity: 0;
+}
+/* Responsive */
+@media (max-width: 900px) {
+  .dish-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+  .selector-bar {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 700px) {
+  .dish-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+  .dish-card img {
+    height: 100px;
+  }
+  .dish-card h4 {
+    font-size: 0.95rem;
+  }
+  .dish-card .dish-desc {
+    font-size: 0.8rem;
+  }
+  .dish-card .dish-price {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .dish-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+  .dish-card img {
+    height: 90px;
+  }
+  .dish-card h4 {
+    font-size: 0.9rem;
+  }
+  .dish-card .dish-desc {
+    font-size: 0.75rem;
+  }
+  .dish-card .dish-price {
+    font-size: 0.85rem;
+  }
+}
